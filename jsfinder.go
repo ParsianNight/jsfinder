@@ -182,7 +182,11 @@ func main() {
 									}
 								} else {
 									if strings.HasPrefix(jsURL, "/") {
-										file.WriteString(fmt.Sprintf("%s%s\n", url, jsURL))
+										if strings.HasSuffix(url,"/") {
+											file.WriteString(fmt.Sprintf("%s%s\n",url,strings.TrimPrefix(jsUrl,"/")))
+										} else {
+											file.WriteString(fmt.Sprintf("%s%s\n", url, jsURL))
+										}
 									} else if strings.HasPrefix(jsURL, "https://") || strings.HasPrefix(jsURL, "http://") {
 										file.WriteString(fmt.Sprintf("%s\n", jsURL))
 									} else if strings.HasPrefix(jsURL, "//") {
