@@ -211,10 +211,20 @@ func main() {
 								file.WriteString(fmt.Sprintf("https://%s/%s\n", jsURL[:strings.Index(jsURL, ".")+4], jsURL[strings.Index(jsURL, ".")+4:]))
 							}
 						} else {
-							file.WriteString(fmt.Sprintf("%s/%s\n", url, jsURL))
+							if strings.HasPrefix(jsURL, "/") {
+										if strings.HasSuffix(url,"/") {
+											file.WriteString(fmt.Sprintf("%s%s\n",url,strings.TrimPrefix(jsUrl,"/")))
+										} else {
+											file.WriteString(fmt.Sprintf("%s%s\n", url, jsURL))
+										}
 						}
 					} else {
-						file.WriteString(fmt.Sprintf("%s/%s\n", url, jsURL))
+							if strings.HasPrefix(jsURL, "/") {
+										if strings.HasSuffix(url,"/") {
+											file.WriteString(fmt.Sprintf("%s%s\n",url,strings.TrimPrefix(jsUrl,"/")))
+										} else {
+											file.WriteString(fmt.Sprintf("%s%s\n", url, jsURL))
+										}
 					}
 				}
 
